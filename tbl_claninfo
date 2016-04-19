@@ -1,0 +1,30 @@
+$token = [token]
+$clantag = [clantag]
+$sqlserver = [sqlserver]
+$sqldb = [sqldb]
+$sqlusername = [username]
+$sqlpassword = [password]
+$requesturl = "https://api.clashofclans.com/v1/clans/"+ $clantag
+$headers = @{"authorization"=("Bearer " + $token)}
+$clan = (Invoke-WebRequest -Method get -uri $requesturl -Headers $headers | ConvertFrom-Json)
+
+$query1 = "execute sp_cleartbl_claninfo_temp"
+invoke-sqlcmd -Query $query1 -ServerInstance $sqlserver -Database $sqldb -username $sqlusername -password $sqlpassword
+
+$clan | foreach {
+	$claninfo_tag = $_.tag
+	$claninfo_name = $_.name
+	$claninfo_type = $_.type
+	$claninfo_description = $_.description
+	$claninfo_location = $_.location
+	$claninfo_badgeurls = $_.badgeurls
+	$claninfo_warfrequency = $_.warfrequency
+	$claninfo_requiredtrophies = $_.requiredtrophies
+	$claninfo_members = $_.members
+
+	$query2 = "insert into tbl_claninfo_temp values ('$claninfo_tag', '$claninfo_name', '$claninfo_type', '$claninfo_description', '$claninfo_location', '$claninfo_badgeurls', '$claninfo_warfrequency', '$laninfo_requiredtrophies', '$claninfo_members')"
+	invoke-sqlcmd -Query $query2 -ServerInstance $sqlserver -Database $sqldb -username $sqlusername -password $sqlpassword
+}
+
+$query3 = "execute sp_mergetbl_claninfo_temp"
+invoke-sqlcmd -Query $query3 -ServerInstance $sqlserver -Database $sqldb -username $sqlusername -password $sqlpassword
