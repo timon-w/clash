@@ -1,7 +1,7 @@
 USE [clash]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_cleartbl_memberinfo_temp]    Script Date: 4/19/2016 4:23:16 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_cleartbl_claninfo_temp]    Script Date: 4/19/2016 4:23:16 PM ******/
 SET ANSI_NULLS ON
 GO
 
