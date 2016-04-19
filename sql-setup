@@ -28,8 +28,9 @@ claninfo_members int NOT NULL
 
 create table tbl_clanstats
 (
-clanstats_id int NOT NULL Primary Key,
+clanstats_id int IDENTITY(1,1) NOT NULL Primary Key,
 clanstats_date date NOT NULL,
+clanstats_tag nvarchar(50) NOT NULL,
 clanstats_clanlevel int NOT NULL,
 clanstats_warwins int NOT NULL,
 clanstats_warwinstreak int NOT NULL,
