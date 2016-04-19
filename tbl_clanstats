@@ -1,0 +1,23 @@
+$token = [token]
+$clantag = [clantag]
+$sqlserver = [sqlserver]
+$sqldb = [sqldb]
+$sqlusername = [username]
+$sqlpassword = [password]
+$requesturl = "https://api.clashofclans.com/v1/clans/"+ $clantag
+$headers = @{"authorization"=("Bearer " + $token)}
+$clan = (Invoke-WebRequest -Method get -uri $requesturl -Headers $headers | ConvertFrom-Json)
+$date = get-date
+
+$clan | foreach {
+	$1 = $date
+	$2 = $_.tag
+	$3 = $_.clanlevel
+	$4 = $_.warwins
+	$5 = $_.warwinstreak
+	$6 = $_.clanpoints
+
+	$query = "insert into tbl_clanstats (clanstats_date, clanstats_clanlevel, clanstats_warwins, clanstats_warwinstreak, clanstats_clanpoints) values ('$1', '$2', '$3', '$4', '$5', '$6')"
+
+  	invoke-sqlcmd -Query $query -ServerInstance "timon.clphw7e0y0fq.ap-southeast-2.rds.amazonaws.com" -Database clash -Username $sqlusername -Password $sqlpassword
+}
