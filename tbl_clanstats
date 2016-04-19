@@ -17,7 +17,7 @@ $clan | foreach {
 	$5 = $_.warwinstreak
 	$6 = $_.clanpoints
 
-	$query = "insert into tbl_clanstats (clanstats_date, clanstats_tag, clanstats_clanlevel, clanstats_warwins, clanstats_warwinstreak, clanstats_clanpoints) values ('$1', '$2', '$3', '$4', '$5', '$6')"
+	$query = "insert into tbl_clanstats values ('$1', '$2', '$3', '$4', '$5', '$6')"
 
-  	invoke-sqlcmd -Query $query -ServerInstance "timon.clphw7e0y0fq.ap-southeast-2.rds.amazonaws.com" -Database clash -Username $sqlusername -Password $sqlpassword
+  	invoke-sqlcmd -Query $query -ServerInstance $sqlserver -Database $sqldb -Username $sqlusername -Password $sqlpassword
 }
