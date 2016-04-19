@@ -24,7 +24,7 @@ create table tbl_claninfo
 (
 claninfo_tag nvarchar(50) NOT NULL Primary Key,
 claninfo_type nvarchar(50) NOT NULL,
-claninfo_decription nvarchar(50) NOT NULL,
+claninfo_description nvarchar(50) NOT NULL,
 claninfo_location nvarchar(50) NOT NULL,
 claninfo_badgeurls nvarchar(50) NOT NULL,
 claninfo_warfrequency nvarchar(50) NOT NULL,
