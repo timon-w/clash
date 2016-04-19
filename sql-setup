@@ -22,14 +22,14 @@ memberstats_donationsrec int NOT NULL
 
 create table tbl_claninfo
 (
-clan_tag nvarchar(50) NOT NULL Primary Key,
-clan_type nvarchar(50) NOT NULL,
-clan_decription nvarchar(50) NOT NULL,
-clan_location nvarchar(50) NOT NULL,
-clan_badgeurls nvarchar(50) NOT NULL,
-clan_warfrequency nvarchar(50) NOT NULL,
-clan_requiredtrophies int NOT NULL,
-clan_members int NOT NULL
+claninfo_tag nvarchar(50) NOT NULL Primary Key,
+claninfo_type nvarchar(50) NOT NULL,
+claninfo_decription nvarchar(50) NOT NULL,
+claninfo_location nvarchar(50) NOT NULL,
+claninfo_badgeurls nvarchar(50) NOT NULL,
+claninfo_warfrequency nvarchar(50) NOT NULL,
+claninfo_requiredtrophies int NOT NULL,
+claninfo_members int NOT NULL
 )
 
 create table tbl_clanstats
