@@ -10,16 +10,16 @@ $members = (Invoke-WebRequest -Method get -uri $requesturl -Headers $headers | C
 $date = get-date
 
 $members | foreach {
-  $memberstats_date = $date
-  $memberstats_tag = $_.tag
-  $memberstats_explevel = $_.explevel
-  $memberstats_trophies = $_.trophies
-  $memberstats_clanrank = $_.clanrank
-  $memberstats_prevclankrank = $_.previousclanrank
-  $memberstats_donations = $_.donations
-  $memberstats_donationsrec = $_.donationsreceived
+  $1 = $date
+  $2 = $_.tag
+  $3 = $_.explevel
+  $4 = $_.trophies
+  $5 = $_.clanrank
+  $6 = $_.previousclanrank
+  $7 = $_.donations
+  $8 = $_.donationsreceived
   
-  $sqlquery1 = "insert into tbl_memberstats (memberstats_date, memberstats_tag, memberstats_explevel, memberstats_trophies, memberstats_clanrank, memberstats_prevclankrank, memberstats_donations, memberstats_donationsrec) values ('$memberstats_date', '$memberstats_tag', '$memberstats_explevel', '$memberstats_trophies', '$memberstats_clanrank', '$memberstats_prevclankrank', '$memberstats_donations', '$memberstats_donationsrec')"
+  $query = "insert into tbl_memberstats values ('$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8')"
 
-  invoke-sqlcmd -Query $sqlquery1 -ServerInstance $sqlserver -Database $sqldb -Username $sqlusername -Password $sqlpassword
+  invoke-sqlcmd -Query $query -ServerInstance $sqlserver -Database $sqldb -Username $sqlusername -Password $sqlpassword
 }
