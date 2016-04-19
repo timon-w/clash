@@ -1,10 +1,10 @@
 $token = [token]
 $clantag = [clantag]
+$sqlusername = [username]
+$sqlpassword = [password]
 $requesturl = "https://api.clashofclans.com/v1/clans/"+ $clantag + "/members"
 $headers = @{"authorization"=("Bearer " + $token)}
 $members = (Invoke-WebRequest -Method get -uri $requesturl -Headers $headers | ConvertFrom-Json).items
-$sqlusername = [username]
-$sqlpassword = [password]
 
 $query1 = "execute sp_cleartbl_memberinfo_temp"
 invoke-sqlcmd -Query $query1 -ServerInstance "timon.clphw7e0y0fq.ap-southeast-2.rds.amazonaws.com" -Database clash -username $sqlusername -password $sqlpassword
