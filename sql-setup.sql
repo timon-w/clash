@@ -1,4 +1,8 @@
 create database clash
+GO
+
+USE [clash]
+GO
 
 create table tbl_claninfo
 (
