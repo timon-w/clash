@@ -1,0 +1,24 @@
+$username = [username]
+$password = [password]
+$path = [path]
+$taskpath = [taskpath]
+
+$task1 = "tbl_memberinfo.ps1"
+$task2 = "tbl_memberstats.ps1"
+$task3 = "tbl_claninfo.ps1"
+$task4 = "tbl_clanstats.ps1"
+
+$trigger1 =  New-ScheduledTaskTrigger -Daily -At 11:30pm
+$trigger2 =  New-ScheduledTaskTrigger -Daily -At 11:35pm
+$trigger3 =  New-ScheduledTaskTrigger -Daily -At 11:40pm
+$trigger4 =  New-ScheduledTaskTrigger -Daily -At 11:45pm
+
+$action1 = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-file `"D:\SQL\$task1`""
+$action2 = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-file `"D:\SQL\$task2`""
+$action3 = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-file `"D:\SQL\$task3`""
+$action4 = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-file `"D:\SQL\$task4`""
+
+Register-ScheduledTask -Action $action1 -Trigger $trigger1 -TaskName $task1 -taskpath $taskpath -user $username -password $password
+Register-ScheduledTask -Action $action2 -Trigger $trigger2 -TaskName $task2 -taskpath $taskpath -user $username -password $password
+Register-ScheduledTask -Action $action3 -Trigger $trigger3 -TaskName $task3 -taskpath $taskpath -user $username -password $password
+Register-ScheduledTask -Action $action4 -Trigger $trigger4 -TaskName $task4 -taskpath $taskpath -user $username -password $password
