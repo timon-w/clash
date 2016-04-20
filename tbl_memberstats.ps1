@@ -19,7 +19,7 @@ $members | foreach {
   $7 = $_.donations
   $8 = $_.donationsreceived
   
-  $query = "insert into tbl_memberstats values ('$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8')"
+  $query = "exec sp_insertinto_tbl_memberstats `'$1`', `'$2`', $3, $4, $5, $6, $7, $8;"
 
   invoke-sqlcmd -Query $query -ServerInstance $sqlserver -Database $sqldb -Username $sqlusername -Password $sqlpassword
 }
