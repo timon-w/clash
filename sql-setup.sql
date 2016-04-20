@@ -1,4 +1,5 @@
 create database clash
+GO
 
 USE [clash]
 GO
