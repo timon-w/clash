@@ -17,7 +17,7 @@ $clan | foreach {
 	$5 = $_.warwinstreak
 	$6 = $_.clanpoints
 
-	$query = "insert into tbl_clanstats values ('$1', '$2', '$3', '$4', '$5', '$6')"
+	$query = "exec sp_insertinto_tbl_clanstats `'$1`', `'$2`', $3, $4, $5, $6;"
 
   	invoke-sqlcmd -Query $query -ServerInstance $sqlserver -Database $sqldb -Username $sqlusername -Password $sqlpassword
 }
