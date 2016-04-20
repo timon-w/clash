@@ -1,5 +1,8 @@
 create database clash
 
+USE [clash]
+GO
+
 create table tbl_claninfo
 (
 claninfo_tag nvarchar(50) NOT NULL Primary Key,
