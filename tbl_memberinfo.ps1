@@ -15,7 +15,7 @@ $members | foreach {
 	$1 = $_.tag
 	$2 = $_.name
 	$3 = $_.role
-	$query2 = "insert into tbl_memberinfo_temp values ('$1', '$2', '$3')"
+	$query2 = "execute sp_insertinto_tbl_memberinfo_temp `'$1`', `'$2`', `'$3`';"
 	invoke-sqlcmd -Query $query2 -ServerInstance $sqlserver -Database $sqldb -username $sqlusername -password $sqlpassword
 }
 
