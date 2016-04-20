@@ -22,7 +22,7 @@ $clan | foreach {
 	$8 = $_.requiredtrophies
 	$9 = $_.members
 
-	$query2 = "insert into tbl_claninfo_temp values ('$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9')"
+	$query2 = "execute sp_insertinto_tbl_claninfo_temp `'$1`', `'$2`', `'$3`', `'$4`', `'$5`', `'$6`', `'$7`', $8, $9;"
 	invoke-sqlcmd -Query $query2 -ServerInstance $sqlserver -Database $sqldb -username $sqlusername -password $sqlpassword
 }
 
